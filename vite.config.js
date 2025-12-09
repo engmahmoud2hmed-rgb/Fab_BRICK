@@ -4,5 +4,5 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/Fab_BRICK/',
+  // base: '/Fab_BRICK/',  // Only needed for GitHub Pages, not Vercel
 })
