@@ -1,22 +1,23 @@
-import './AboutUs.css';
+// src/pages/AboutUs.jsx
+import { motion } from 'framer-motion';
 import aboutImg from '../assets/image/AboutUS.jpg';
 import team1 from '../assets/image/team1.jpg';
 import team2 from '../assets/image/team2.jpg';
 import team3 from '../assets/image/team3.jpg';
-import team4 from '../assets/image/team4.jpg';  
+import team4 from '../assets/image/team4.jpg';
 import team5 from '../assets/image/team5.jpg';
 import team6 from '../assets/image/team6.jpg';
 import team7 from '../assets/image/team7.jpg';
 import team8 from '../assets/image/team8.jpg';
 import team9 from '../assets/image/team9.jpg';
-import team10 from '../assets/image/team10.jpg';  
+import team10 from '../assets/image/team10.jpg';
 
 const team = [
   { img: team1, name: "Phillipine", title: "Designer" },
   { img: team2, name: "Théo", title: "Head of Design" },
   { img: team3, name: "Clara", title: "Production Manager" },
   { img: team4, name: "Louise", title: "Marketing Manager" },
-  { img: team5, name: "Julien", title: "Sales Manager" }, 
+  { img: team5, name: "Julien", title: "Sales Manager" },
   { img: team6, name: "Emma", title: "Designer" },
   { img: team7, name: "Lucas", title: "Logistics Coordinator" },
   { img: team8, name: "Sophie", title: "Customer Relations" },
@@ -24,90 +25,168 @@ const team = [
   { img: team10, name: "Clarisse Merlet", title: "Founder & Architect" },
 ];
 
-
-  
+const milestones = [
+  { label: "First prototype", value: "09/2025" },
+  { label: "Company creation", value: "02/2025" },
+  { label: "Founder", value: "TEAM 3" },
+  { label: "Patents", value: "Depi & EYOUTH" },
+];
 
 export default function AboutUs() {
-  // Group every 3 in a row and the remaining last element alone
-  const teamRows = [];
-  for (let i = 0; i < 9; i += 3) {
-    teamRows.push(team.slice(i, i + 3));
-  }
-  const lastRow = [team[9]];
-
   return (
-    <div>
-      {/*  AboutUs */}
-      <div className="aboutus-flex">
-        <div className="aboutus-left">
-          <div className="aboutus-details">
-            <div><span className="label">First prototype:</span> 10/2016</div>
-            <div><span className="label">Company creation:</span> 12/2018</div>
-            <div><span className="label">Founder:</span> Clarisse Merlet</div>
-            <div><span className="label">Patents:</span> France & Europe</div>
-          </div>
-        </div>
-        <div className="aboutus-divider"></div>
-        <div className="aboutus-right">
-          <h1 className="aboutus-title">About us</h1>
-          <div className="aboutus-p">
-            FabBRICK is a unique material designed to elevate spaces. Each brick is handcrafted with meticulous attention to detail, resulting in a rare and timeless product. Far from being just a functional material, FabBRICK embodies a fusion of innovation, craftsmanship, and aesthetics.
-          </div>
-          <div className="aboutus-p">
-            FabBRICK is born from carefully repurposed fabrics, reimagined into a noble material that is both soft to the touch and visually striking. This material stands out for its rich texture, vibrant colors, and its ability to tell a unique story. Every project that incorporates it becomes a work of art, shaped by craftsmanship that values authenticity and the elegance of the hand’s gesture.
-          </div>
-          <div className="aboutus-p">
-            FabBRICK is for those who seek more than just a material—it is a true visual and sensory experience, an invitation to reinvent space and uncover a story worth telling. For those with an appreciation for art, design, and rarity, FabBRICK offers a one-of-a-kind alternative, capable of transforming the ordinary into an exceptional artistic expression.
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-stone-50 pb-20 font-sans">
 
-      {/* 2- big photo in the middle */}
-      <div className="aboutus-img-section">
-        <img src={aboutImg} alt="About Section" className="aboutus-img-big" />
-      </div>
-
-      {/* 3- Our Story section  */}
-      <section className="aboutus-story-content">
-        <h1 className="aboutus-title-center">Our Story</h1>
-        <div className="aboutus-underline"></div>
-        <p className="aboutus-story-text">
-          The story of FabBRICK is that of Clarisse Merlet, founder and architect driven by a passion for innovation. By reinventing textile upcycling, she gave birth to FabBRICK—a unique material that transforms fabrics into artistic and elegant bricks. With her background in architecture, Clarisse has skillfully combined creativity, craftsmanship, and a deep respect for materials to design a product that is both aesthetic and innovative.
-        </p>
-        <p className="aboutus-story-text">
-          From this inspiring idea, FabBRICK has grown into a creative studio based in Paris’s 19th arrondissement. With a large production workshop and a close-knit team of about ten people, the studio continues to push the boundaries of innovation in art and design. Each project is an invitation to redefine space, where every brick tells a story and every creation becomes a work of art.
-        </p>
+      {/* Hero Section */}
+      <section className="relative w-full py-24 md:py-32 flex flex-col items-center justify-center text-center px-4 bg-white border-b border-stone-200">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="text-emerald-600 font-bold tracking-widest uppercase text-sm mb-4 block">Our Story</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-stone-900 mb-6 font-display">
+            A New Life for Textiles
+          </h1>
+          <p className="max-w-2xl mx-auto text-stone-500 text-lg md:text-xl leading-relaxed">
+            Reinventing construction materials through the art of upcycling.
+          </p>
+        </motion.div>
       </section>
 
-      {/* 4- Our Team section  */}
-      <section className="team-section">
-        <h2 className="team-title">Our Team</h2>
-        <div className="team-underline"></div>
-       
-        {teamRows.map((row, idx) => (
-          <div key={idx} className="team-row">
-            {row.map(member => (
-              <div className="team-member" key={member.name}>
-                <div className="team-img-wrap">
-                  <img src={member.img} alt={member.name} className="team-img" />
-                </div>
-                <div className="team-name">{member.name}</div>
-                <div className="team-title-small">{member.title}</div>
+      {/* Milestones Ribbon */}
+      <div className="bg-stone-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {milestones.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+            >
+              <p className="text-stone-400 text-sm uppercase tracking-wider mb-2">{item.label}</p>
+              <h3 className="text-xl md:text-2xl font-bold text-emerald-400">{item.value}</h3>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Content & Big Image */}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Text Content */}
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl font-bold text-stone-800 mb-6">Innovative craftsmanship</h2>
+              <div className="space-y-6 text-stone-600 leading-relaxed text-lg">
+                <p>
+                  ECOFAB is a unique material designed to elevate spaces. Each brick is handcrafted with meticulous attention to detail, resulting in a rare and timeless product.
+                </p>
+                <p>
+                  Born from carefully repurposed fabrics, it is reimagined into a noble material that is both soft to the touch and visually striking. This material stands out for its rich texture, vibrant colors, and its ability to tell a unique story.
+                </p>
+                <p className="italic text-stone-800 font-medium">
+                  "Every project that incorporates it becomes a work of art, shaped by craftsmanship that values authenticity and the elegance of the hand’s gesture."
+                </p>
               </div>
-            ))}
+            </motion.div>
           </div>
-        ))}
-        
-        <div className="team-row team-row-single">
-          <div className="team-member" key={lastRow[0].name}>
-            <div className="team-img-wrap">
-              <img src={lastRow[0].img} alt={lastRow[0].name} className="team-img" />
-            </div>
-            <div className="team-name">{lastRow[0].name}</div>
-            <div className="team-title-small">{lastRow[0].title}</div>
-          </div>
+
+          {/* Large Image with Hover Effect */}
+          <motion.div
+            className="relative rounded-2xl overflow-hidden shadow-2xl"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.img
+              src={aboutImg}
+              alt="ECOFAB Aesthetics"
+              className="w-full h-auto object-cover"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.7 }}
+            />
+          </motion.div>
         </div>
       </section>
+
+      {/* Our Story Paragraphs */}
+      <section className="bg-emerald-50 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl font-bold text-stone-800 mb-8">From Idea to Reality</h2>
+            <p className="text-stone-700 text-lg leading-loose">
+              The story of ECOFAB is that of Clarisse Merlet, founder and architect driven by a passion for innovation. By reinventing textile upcycling, she gave birth to ECOFAB—a unique material that transforms fabrics into artistic and elegant bricks. With her background in architecture, Clarisse has skillfully combined creativity, craftsmanship, and a deep respect for materials.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="text-stone-700 text-lg leading-loose">
+              From this inspiring idea, ECOFAB has grown into a creative studio based in Paris’s 19th arrondissement. With a large production workshop and a close-knit team, the studio continues to push the boundaries of innovation in art and design.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="max-w-7xl mx-auto px-4 py-24">
+        <div className="text-center mb-16">
+          <motion.h2
+            className="text-4xl font-bold text-stone-900 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Meet the Team
+          </motion.h2>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 gap-y-12">
+          {team.map((member, idx) => (
+            <motion.div
+              key={idx}
+              className="group text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+            >
+              <div className="relative overflow-hidden rounded-xl mb-4 shadow-md aspect-[3/4]">
+                <motion.img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                  <span className="text-white font-medium">{member.title}</span>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-stone-800">{member.name}</h3>
+              <p className="text-emerald-600 text-sm font-medium uppercase tracking-wide">{member.title}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }

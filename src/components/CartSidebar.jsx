@@ -1,16 +1,22 @@
 // src/components/CartSidebar.jsx
 import { useSelector, useDispatch } from "react-redux";
 import { closeCart, removeItem, clearCart } from "../store/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function CartSidebar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isOpen, items } = useSelector((state) => state.cart);
+
+  const handleCheckout = () => {
+    dispatch(closeCart());
+    navigate("/checkout");
+  };
 
   return (
     <div
-      className={`fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl transform transition-transform duration-300 z-50 ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl transform transition-transform duration-300 z-50 ${isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
     >
       {/* الهيدر */}
       <div className="flex items-center justify-between px-6 py-4 border-b">
@@ -74,7 +80,10 @@ export default function CartSidebar() {
           >
             Clear cart
           </button>
-          <button className="bg-black text-white text-sm px-6 py-2 rounded-full">
+          <button
+            onClick={handleCheckout}
+            className="bg-black text-white text-sm px-6 py-2 rounded-full"
+          >
             Checkout
           </button>
         </div>

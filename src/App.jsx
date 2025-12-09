@@ -8,6 +8,11 @@ import Shop from './pages/Shop';
 import Contact from './pages/Contact';
 import BoxDetail from './pages/BoxDetail';
 import Option2Detail from './pages/Option2Detail';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Checkout from './pages/Checkout';
+import Partner from './pages/Partner';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   const routes = createHashRouter([
@@ -23,6 +28,17 @@ export default function App() {
         { path: 'samples/option2/:slug', element: <Option2Detail /> },
         { path: 'shop', element: <Shop /> },
         { path: 'contact', element: <Contact /> },
+        { path: 'login', element: <Login /> },
+        { path: 'signup', element: <Signup /> },
+        { path: 'partner', element: <Partner /> }, // Added Partner route
+        {
+          path: 'checkout',
+          element: (
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          )
+        },
         { path: '*', element: <Home /> },
       ],
     },

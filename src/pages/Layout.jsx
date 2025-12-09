@@ -6,11 +6,11 @@ import Footer from "../components/Footer";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navbar />
       <CartSidebar />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-[72px] overflow-x-hidden w-full">
         <Outlet />
       </main>
 
