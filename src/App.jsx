@@ -5,6 +5,7 @@ import Projects from './pages/Projects';
 import AboutUs from './pages/AboutUs';
 import Samples from './pages/Samples';
 import Shop from './pages/Shop';
+import ShopProductDetail from './pages/ShopProductDetail';
 import Contact from './pages/Contact';
 import BoxDetail from './pages/BoxDetail';
 import Option2Detail from './pages/Option2Detail';
@@ -27,6 +28,7 @@ export default function App() {
         { path: 'samples/:slug', element: <BoxDetail /> },
         { path: 'samples/option2/:slug', element: <Option2Detail /> },
         { path: 'shop', element: <Shop /> },
+        { path: 'shop/:slug', element: <ShopProductDetail /> },
         { path: 'contact', element: <Contact /> },
         { path: 'login', element: <Login /> },
         { path: 'signup', element: <Signup /> },

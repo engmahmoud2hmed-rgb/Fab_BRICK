@@ -1,21 +1,24 @@
-import shop1 from '../assets/image/shop1.jpg';
+import uniImage from '../../IMG2/UNI.jpg';
 import shop2 from '../assets/image/shop2.jpg';
 import shop3 from '../assets/image/shop3.jpg';
 import yellowChair from '../assets/image/yellow-chair.jpg';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../store/cartSlice';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const products = [
   {
     id: '1',
-    name: "Classic Wall Covering",
+    slug: 'classic-wall-covering',
+    name: "Unique Pieces",
     price: 120,
-    image: shop1,
-    description: "Elegant wall covering for modern homes."
+    image: uniImage,
+    description: "One-of-a-kind artistic wall pieces for distinctive spaces."
   },
   {
     id: '2',
+    slug: 'modern-texture-brick',
     name: "Modern Texture Brick",
     price: 95,
     image: shop2,
@@ -23,6 +26,7 @@ const products = [
   },
   {
     id: '3',
+    slug: 'minimalist-panel',
     name: "Minimalist Panel",
     price: 150,
     image: shop3,
@@ -30,6 +34,7 @@ const products = [
   },
   {
     id: '4',
+    slug: 'accent-yellow-chair',
     name: "Accent Yellow Chair",
     price: 200,
     image: yellowChair,
@@ -40,7 +45,8 @@ const products = [
 export default function Shop() {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product, e) => {
+    e.preventDefault(); // Prevent navigation when clicking Add to Cart
     dispatch(addItem({
       id: product.id,
       name: product.name,
@@ -104,28 +110,30 @@ export default function Shop() {
                 variants={itemVariants}
                 className="flex flex-col border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="w-full h-[260px] md:h-[280px] overflow-hidden bg-gray-100">
-                  <motion.img
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4 flex flex-col items-start gap-2">
-                  <h3 className="text-lg font-bold">{product.name}</h3>
-                  <p className="text-gray-600 text-sm">{product.description}</p>
-                  <div className="w-full flex justify-between items-center mt-2">
-                    <span className="text-xl font-semibold">${product.price}</span>
-                    <motion.button
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleAddToCart(product)}
-                      className="px-4 py-2 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
-                    >
-                      Add to Cart
-                    </motion.button>
+                <Link to={`/shop/${product.slug}`} className="block">
+                  <div className="w-full h-[260px] md:h-[280px] overflow-hidden bg-gray-100">
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
+                  <div className="p-4 flex flex-col items-start gap-2">
+                    <h3 className="text-lg font-bold">{product.name}</h3>
+                    <p className="text-gray-600 text-sm">{product.description}</p>
+                    <span className="text-xl font-semibold">${product.price}</span>
+                  </div>
+                </Link>
+                <div className="px-4 pb-4">
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={(e) => handleAddToCart(product, e)}
+                    className="w-full px-4 py-2 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
+                  >
+                    Add to Cart
+                  </motion.button>
                 </div>
               </motion.div>
             ))}
