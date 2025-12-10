@@ -1,5 +1,6 @@
 // src/pages/Option2Detail.jsx
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { option2Products } from "../pages/Samples";
 import { useDispatch } from "react-redux";
 import { addItem, openCart } from "../store/cartSlice";
@@ -7,9 +8,33 @@ import { addItem, openCart } from "../store/cartSlice";
 export default function Option2Detail() {
   const { slug } = useParams();
   const product = option2Products.find((p) => p.slug === slug);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   if (!product) return <div className="p-8">Product not found</div>;
+
+  const handleIncrement = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  const handleDecrement = () => {
+    setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleAddToCart = () => {
+    // Add the item multiple times based on quantity
+    for (let i = 0; i < quantity; i++) {
+      dispatch(
+        addItem({
+          id: slug,
+          name: product.name,
+          price: product.price,
+          img: product.img,
+        })
+      );
+    }
+    dispatch(openCart());
+  };
 
   return (
     <div className="w-full flex justify-center">
@@ -30,32 +55,22 @@ export default function Option2Detail() {
           </h1>
           <div className="text-base mb-6">{product.price}</div>
 
-          {/* Quantity currently fixed */}
+          {/* Quantity controls */}
           <div className="mb-6">
             <div className="text-xs mb-1">Quantity *</div>
             <div className="inline-flex items-center border border-gray-300 text-sm">
-              <button className="px-3 py-2">−</button>
+              <button className="px-3 py-2 hover:bg-gray-100 transition-colors" onClick={handleDecrement}>−</button>
               <span className="px-8 py-2 border-x border-gray-300 text-center">
-                1
+                {quantity}
               </span>
-              <button className="px-3 py-2">+</button>
+              <button className="px-3 py-2 hover:bg-gray-100 transition-colors" onClick={handleIncrement}>+</button>
             </div>
           </div>
 
           {/* Add to Cart */}
           <button
             className="w-full max-w-[400px] border border-black rounded-full py-3 text-sm font-medium mb-10 hover:bg-black hover:text-white transition"
-            onClick={() => {
-              dispatch(
-                addItem({
-                  id: slug,
-                  name: product.name,
-                  price: product.price,
-                  img: product.img,
-                })
-              );
-              dispatch(openCart());
-            }}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>

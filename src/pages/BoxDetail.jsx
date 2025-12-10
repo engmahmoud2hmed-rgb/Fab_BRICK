@@ -32,9 +32,33 @@ export default function BoxDetail() {
   const { slug } = useParams();
   const box = boxes[slug];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   if (!box) return <div style={{ padding: 40 }}>Box not found</div>;
+
+  const handleIncrement = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  const handleDecrement = () => {
+    setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleAddToCart = () => {
+    // Add the item multiple times based on quantity
+    for (let i = 0; i < quantity; i++) {
+      dispatch(
+        addItem({
+          id: box.id,
+          name: box.name,
+          price: box.price,
+          img: box.img,
+        })
+      );
+    }
+    dispatch(openCart());
+  };
 
   return (
     <section className="box-section">
@@ -64,25 +88,15 @@ export default function BoxDetail() {
         <div className="box-qty-row">
           <span className="box-qty-label">Quantity *</span>
           <div className="box-qty-control">
-            <button className="box-qty-btn">-</button>
-            <span className="box-qty-value">1</span>
-            <button className="box-qty-btn">+</button>
+            <button className="box-qty-btn" onClick={handleDecrement}>-</button>
+            <span className="box-qty-value">{quantity}</span>
+            <button className="box-qty-btn" onClick={handleIncrement}>+</button>
           </div>
         </div>
 
         <button
           className="box-add-btn"
-          onClick={() => {
-            dispatch(
-              addItem({
-                id: box.id,
-                name: box.name,
-                price: box.price,
-                img: box.img,
-              })
-            );
-            dispatch(openCart());
-          }}
+          onClick={handleAddToCart}
         >
           Add to Cart
         </button>
