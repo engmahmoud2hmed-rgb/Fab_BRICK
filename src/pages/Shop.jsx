@@ -108,9 +108,9 @@ export default function Shop() {
               <motion.div
                 key={product.id}
                 variants={itemVariants}
-                className="flex flex-col border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                className="flex flex-col border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full"
               >
-                <Link to={`/shop/${product.slug}`} className="block">
+                <Link to={`/shop/${product.slug}`} className="block flex-grow flex flex-col">
                   <div className="w-full h-[260px] md:h-[280px] overflow-hidden bg-gray-100">
                     <motion.img
                       whileHover={{ scale: 1.05 }}
@@ -120,19 +120,45 @@ export default function Shop() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-4 flex flex-col items-start gap-2">
+                  <div className="p-4 flex flex-col gap-2 flex-grow">
                     <h3 className="text-lg font-bold">{product.name}</h3>
-                    <p className="text-gray-600 text-sm">{product.description}</p>
-                    <span className="text-xl font-semibold">${product.price}</span>
+                    <p className="text-gray-600 text-sm flex-grow">{product.description}</p>
+                    <span className="text-xl font-semibold mt-2">${product.price}</span>
                   </div>
                 </Link>
-                <div className="px-4 pb-4">
+                <div className="p-4 pt-0">
                   <motion.button
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)"
+                    }}
                     whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeOut"
+                    }}
                     onClick={(e) => handleAddToCart(product, e)}
-                    className="w-full px-4 py-2 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
+                    className="relative w-full px-4 py-3 bg-gradient-to-r from-black to-gray-800 text-white text-sm font-bold rounded-lg overflow-hidden group transition-all duration-300"
                   >
-                    Add to Cart
+                    {/* Animated background gradient on hover */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+
+                    {/* Button text */}
+                    <span className="relative flex items-center justify-center gap-2">
+                      <svg
+                        className="w-4 h-4 transform group-hover:scale-110 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      <span className="group-hover:tracking-wider transition-all duration-300">
+                        Add to Cart
+                      </span>
+                    </span>
                   </motion.button>
                 </div>
               </motion.div>

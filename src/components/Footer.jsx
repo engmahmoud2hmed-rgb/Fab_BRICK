@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand & Social */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h3 className="text-xl font-bold text-stone-900 mb-2">ECOFAB® 2025</h3>
-            <p className="text-stone-600 text-sm mb-4">75019 Paris</p>
+            <p className="text-stone-600 text-sm mb-4">Cairo, EGYPT</p>
             <div className="flex gap-4 text-2xl text-stone-700">
               <a href="#" className="hover:text-emerald-600 transition-colors" aria-label="Instagram">
                 <FaInstagram />
@@ -26,37 +26,37 @@ export default function Footer() {
 
           {/* Links Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 text-center md:text-left">
-            {/* French Links */}
+            {/* Egypt Links */}
             <div className="flex flex-col gap-2">
-              <h4 className="font-semibold text-stone-900 mb-2 text-sm uppercase tracking-wide">Français</h4>
+              <h4 className="font-semibold text-stone-900 mb-2 text-sm uppercase tracking-wide">EGYPT</h4>
               <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                Mode d'emploi revêtement
-              </a>
-              <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                Notre catalogue
-              </a>
-              <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                Conditions générales de vente
-              </a>
-              <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                Politique de confidentialité
-              </a>
-            </div>
-
-            {/* English Links */}
-            <div className="flex flex-col gap-2">
-              <h4 className="font-semibold text-stone-900 mb-2 text-sm uppercase tracking-wide">English</h4>
-              <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                User guide for cladding bricks
+                User Guide for Wall Covering
               </a>
               <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
                 Our Catalog
               </a>
               <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                General conditions of sale
+                Terms and Conditions
               </a>
               <a href="#" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
-                Privacy policy
+                Privacy Policy
+              </a>
+            </div>
+
+            {/* Quick Links */}
+            <div className="flex flex-col gap-2">
+              <h4 className="font-semibold text-stone-900 mb-2 text-sm uppercase tracking-wide">Quick Links</h4>
+              <a href="/#/about-us" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
+                About Us
+              </a>
+              <a href="/#/samples" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
+                Samples
+              </a>
+              <a href="/#/shop" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
+                Shop
+              </a>
+              <a href="/#/contact" className="text-sm text-stone-600 hover:text-emerald-600 transition-colors underline">
+                Contact Us
               </a>
             </div>
           </div>

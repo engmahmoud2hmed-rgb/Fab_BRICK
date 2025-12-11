@@ -6,6 +6,7 @@ import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { FaLeaf, FaBars, FaTimes } from "react-icons/fa";
 import LogoutAnimation from "./LogoutAnimation";
+import logoImage from "../../IMG2/logo.jpg";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -60,16 +61,36 @@ export default function Navbar() {
       {/* Logout Animation */}
       <LogoutAnimation show={showLogoutAnimation} />
 
+      {/* Spinning Animation Keyframes */}
+      <style>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .logo-spin {
+          animation: spin 3s linear infinite;
+        }
+        .logo-spin:hover {
+          animation: spin 1s linear infinite;
+        }
+      `}</style>
+
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-2" : "bg-white/90 backdrop-blur-sm py-4"
           }`}
       >
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group z-50 relative" onClick={closeMobileMenu}>
-            <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-              <FaLeaf className="text-emerald-600 text-xl" />
-            </div>
+          <Link to="/" className="flex items-center gap-3 group z-50 relative" onClick={closeMobileMenu}>
+            <img
+              src={logoImage}
+              alt="ECOFAB Logo"
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover logo-spin shadow-md"
+            />
             <span className="text-xl md:text-2xl font-bold uppercase tracking-widest text-stone-900">
               Ecofab
             </span>
@@ -77,6 +98,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8 nav-font text-stone-700">
+            <li><Link to="/" className={navLinkClass}>HOME</Link></li>
             <li><Link to="/projects" className={navLinkClass}>PROJECTS</Link></li>
             <li><Link to="/about-us" className={navLinkClass}>ABOUT US</Link></li>
             <li><Link to="/partner" className={navLinkClass}>PARTNER</Link></li>
@@ -160,6 +182,15 @@ export default function Navbar() {
       >
         <div className="flex flex-col h-full overflow-y-auto pt-20">
           <ul className="flex flex-col gap-1 p-6">
+            <li>
+              <Link
+                to="/"
+                className="block py-3 px-4 text-lg font-medium text-stone-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-colors"
+                onClick={closeMobileMenu}
+              >
+                HOME
+              </Link>
+            </li>
             <li>
               <Link
                 to="/projects"
