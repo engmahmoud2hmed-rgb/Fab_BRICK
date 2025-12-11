@@ -20,7 +20,7 @@ const team = [
 const milestones = [
   { label: "First prototype", value: "09/2025" },
   { label: "Company creation", value: "02/2025" },
-  { label: "Founder", value: "TEAM 3" },
+  { label: "Founder", value: "ECOFAB TEAM" },
   { label: "Patents", value: "Depi & EYOUTH" },
 ];
 
