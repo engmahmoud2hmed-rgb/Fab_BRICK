@@ -12,7 +12,7 @@ const team = [
   { img: mahmoudImg, name: "Mahmoud", title: "CEO" },
   { img: nadaImg, name: "Nada", title: "COO" },
   { img: hossamImg, name: "Hossam", title: "CFO" },
-  { img: hannenImg, name: "Hannen", title: "CMO" },
+  { img: hannenImg, name: "Haneen", title: "CMO" },
   { img: nourImg, name: "Nour", title: "CTO" },
   { img: ahmedImg, name: "Ahmed", title: "BDM" },
 ];
