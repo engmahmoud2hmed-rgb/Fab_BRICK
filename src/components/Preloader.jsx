@@ -6,7 +6,7 @@ export default function Preloader({ onComplete }) {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Simulate loading progress
+        // Simulate loading progress - slower for longer experience
         const interval = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
@@ -14,9 +14,9 @@ export default function Preloader({ onComplete }) {
                     setTimeout(() => onComplete(), 500);
                     return 100;
                 }
-                return prev + 2;
+                return prev + 0.5; // Slower increment (was 2) for ~10 second duration
             });
-        }, 30);
+        }, 50); // Slower interval (was 30ms)
 
         return () => clearInterval(interval);
     }, [onComplete]);

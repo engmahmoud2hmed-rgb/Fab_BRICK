@@ -1,28 +1,20 @@
 // src/pages/AboutUs.jsx
 import { motion } from 'framer-motion';
 import aboutImg from '../assets/image/AboutUS.jpg';
-import team1 from '../assets/image/team1.jpg';
-import team2 from '../assets/image/team2.jpg';
-import team3 from '../assets/image/team3.jpg';
-import team4 from '../assets/image/team4.jpg';
-import team5 from '../assets/image/team5.jpg';
-import team6 from '../assets/image/team6.jpg';
-import team7 from '../assets/image/team7.jpg';
-import team8 from '../assets/image/team8.jpg';
-import team9 from '../assets/image/team9.jpg';
-import team10 from '../assets/image/team10.jpg';
+import mahmoudImg from '../../IMG2/MAHMOUD.jpg';
+import nadaImg from '../../IMG2/NADA .jpg';
+import hossamImg from '../../IMG2/HOSSAM.jpg';
+import hannenImg from '../../IMG2/HANNEN.jpg';
+import nourImg from '../../IMG2/NOUR.jpg';
+import ahmedImg from '../../IMG2/AHMED .jpg';
 
 const team = [
-  { img: team1, name: "Phillipine", title: "Designer" },
-  { img: team2, name: "Théo", title: "Head of Design" },
-  { img: team3, name: "Clara", title: "Production Manager" },
-  { img: team4, name: "Louise", title: "Marketing Manager" },
-  { img: team5, name: "Julien", title: "Sales Manager" },
-  { img: team6, name: "Emma", title: "Designer" },
-  { img: team7, name: "Lucas", title: "Logistics Coordinator" },
-  { img: team8, name: "Sophie", title: "Customer Relations" },
-  { img: team9, name: "Maxime", title: "Material Specialist" },
-  { img: team10, name: "Clarisse Merlet", title: "Founder & Architect" },
+  { img: mahmoudImg, name: "Mahmoud", title: "CEO" },
+  { img: nadaImg, name: "Nada", title: "COO" },
+  { img: hossamImg, name: "Hossam", title: "CFO" },
+  { img: hannenImg, name: "Hannen", title: "CMO" },
+  { img: nourImg, name: "Nour", title: "CTO" },
+  { img: ahmedImg, name: "Ahmed", title: "BDM" },
 ];
 
 const milestones = [
@@ -157,7 +149,7 @@ export default function AboutUs() {
           <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 gap-y-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12">
           {team.map((member, idx) => (
             <motion.div
               key={idx}
@@ -175,9 +167,10 @@ export default function AboutUs() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 />
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                  <span className="text-white font-medium">{member.title}</span>
+                {/* Overlay on hover - shows name and title */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <h3 className="text-white text-2xl font-bold mb-2">{member.name}</h3>
+                  <p className="text-emerald-300 text-lg font-semibold uppercase tracking-wider">{member.title}</p>
                 </div>
               </div>
               <h3 className="text-xl font-bold text-stone-800">{member.name}</h3>
