@@ -1,4 +1,6 @@
 import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
@@ -14,8 +16,27 @@ import Signup from './pages/Signup';
 import Checkout from './pages/Checkout';
 import Partner from './pages/Partner';
 import ProtectedRoute from './components/ProtectedRoute';
+import Preloader from './components/Preloader';
 
 export default function App() {
+  const [showPreloader, setShowPreloader] = useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    // Check if this is the first load
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    if (hasVisited) {
+      setShowPreloader(false);
+      setIsFirstLoad(false);
+    } else {
+      sessionStorage.setItem('hasVisited', 'true');
+    }
+  }, []);
+
+  const handlePreloaderComplete = () => {
+    setShowPreloader(false);
+  };
+
   const routes = createHashRouter([
     {
       path: '/',
@@ -32,19 +53,27 @@ export default function App() {
         { path: 'contact', element: <Contact /> },
         { path: 'login', element: <Login /> },
         { path: 'signup', element: <Signup /> },
-        { path: 'partner', element: <Partner /> }, // Added Partner route
+        { path: 'partner', element: <Partner /> },
         {
           path: 'checkout',
           element: (
             <ProtectedRoute>
               <Checkout />
             </ProtectedRoute>
-          )
+          ),
         },
-        { path: '*', element: <Home /> },
       ],
     },
   ]);
 
-  return <RouterProvider router={routes} />;
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        {showPreloader && isFirstLoad && (
+          <Preloader onComplete={handlePreloaderComplete} />
+        )}
+      </AnimatePresence>
+      {!showPreloader && <RouterProvider router={routes} />}
+    </>
+  );
 }
