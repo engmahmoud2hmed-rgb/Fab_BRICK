@@ -3,7 +3,7 @@ import wallImage from '../../IMG2/WALL.jpg';
 import interiorImage from '../../IMG2/INT.jpg';
 import uniqueImage from '../../IMG2/UNI.jpg';
 import { motion } from 'framer-motion';
-import { FaArrowDown, FaLeaf, FaPaintBrush, FaGem } from 'react-icons/fa';
+import { FaArrowDown, FaLeaf, FaPaintBrush, FaGem, FaThLarge } from 'react-icons/fa';
 
 export default function Home() {
 
@@ -20,7 +20,7 @@ export default function Home() {
       title: 'Wall Covering',
       content: 'Explore our premium wall coverings made from recycled textiles. Sustainable, beautiful, and built to last.',
       image: wallImage,
-      icon: FaLeaf,
+      icon: FaThLarge,
       color: 'emerald',
       buttonText: 'Explore Collection'
     },
