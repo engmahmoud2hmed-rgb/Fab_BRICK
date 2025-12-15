@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCart } from "../store/cartSlice";
 import { useState, useEffect } from "react";
@@ -86,14 +87,57 @@ export default function Navbar() {
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group z-50 relative" onClick={closeMobileMenu}>
-            <img
-              src={logoImage}
-              alt="ECOFAB Logo"
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover logo-spin shadow-md"
-            />
-            <span className="text-xl md:text-2xl font-bold uppercase tracking-widest text-stone-900">
-              Ecofab
-            </span>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.5 }
+              }}
+              style={{ originX: 0.5, originY: 0.5 }}
+            >
+              <img
+                src={logoImage}
+                alt="ECOFAB Logo"
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover shadow-md"
+              />
+            </motion.div>
+            <div className="flex flex-col">
+              <div className="flex overflow-hidden">
+                {['E', 'C', 'O', 'F', 'A', 'B'].map((letter, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    className="text-2xl md:text-3xl font-bold tracking-wider text-stone-900"
+                    style={{ fontFamily: '"Playfair Display", serif' }}
+                    whileHover={{
+                      y: -5,
+                      color: "#059669", // emerald-600
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </div>
+              <motion.span
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "100%" }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="h-[2px] bg-emerald-600 rounded-full"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
